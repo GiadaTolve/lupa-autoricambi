@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------- MODULO UTENTI (LOGIN) ---------
+model Utente {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  modifiche    LogModifica[]
+}
+
+// --------- MODULO MAGAZZINO ---------
+model Articolo {
+  id                   String     @id @default(cuid())
+  codice_articolo      String     @unique
+  nome_pezzo           String
+  nome_macchina        String
+  pezzi_disponibili    Int        @default(0)
+  codice_posto         String?
+  scaffale             Scaffale?
+  posizione            Posizione?
+  immagine_riferimento String?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+  modifiche            LogModifica[]
+}
+
+enum Scaffale {
+  A
+  B
+  C
+  D
+  E
+}
+
+enum Posizione {
+  alto
+  mid
+  basso
+}
+
+// --------- MODULO CLIENTI ---------
+model Cliente {
+  id              String      @id @default(cuid())
+  nome_cliente    String
+  numero_telefono String?
+  tipo            TipoCliente
+  nome_officina   String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  pratiche        Pratica[]
+}
+
+enum TipoCliente {
+  PRIVATO
+  MECCANICO
+}
+
+model Pratica {
+  id              String   @id @default(cuid())
+  descrizione     String
+  acconto_versato Float    @default(0)
+  saldo_rimanente Float    @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  cliente         Cliente  @relation(fields: [clienteId], references: [id])
+  clienteId       String
+}
+
+// --------- MODULO TRACCIABILITA' (AUDIT LOG) ---------
+model LogModifica {
+  id          String    @id @default(cuid())
+  operazione  String
+  descrizione String
+  createdAt   DateTime  @default(now())
+  utente      Utente    @relation(fields: [utenteId], references: [id])
+  utenteId    String
+  articolo    Articolo? @relation(fields: [articoloId], references: [id])
+  articoloId  String?
+}
