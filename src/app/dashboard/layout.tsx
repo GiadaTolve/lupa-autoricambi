@@ -46,11 +46,16 @@ export default function DashboardLayout({
         
         {/* --- Logo e Scritta (Desktop) --- */}
         <div className="flex items-center gap-2 mb-4 px-2">
-          <img src="/LUPALOGO.png" alt="Logo" style={{ width: '32px', height: 'auto' }} />
-          <span className="text-xl font-bold text-[#FFD700] font-brand">
-            Lupa Autoricambi
-          </span>
-        </div>
+  <img 
+    src="/LUPALOGO.png" 
+    alt="Logo" 
+    loading="eager" // <--- AGGIUNTO
+    className="w-[32px] h-auto object-contain" // <--- AGGIUNTO
+  />
+  <span className="text-xl font-bold text-[#FFD700] font-brand">
+    Lupa Autoricambi
+  </span>
+</div>
 
         <nav className="flex-1 space-y-2">
           <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="block px-4 py-2 rounded hover:bg-gray-700">
@@ -75,12 +80,17 @@ export default function DashboardLayout({
       {/* HEADER (Mobile) */}
       <header className="md:hidden flex justify-between items-center w-full p-4 bg-[#333333] shadow-md fixed top-0 left-0 z-10">
         
-        <div className="flex items-center gap-2">
-          <img src="/LUPALOGO.png" alt="Logo" style={{ width: '28px', height: 'auto' }} />
-          <span className="text-lg font-bold text-[#FFD700] font-brand">
-            Lupa Autoricambi
-          </span>
-        </div>
+      <div className="flex items-center gap-2">
+  <img 
+    src="/LUPALOGO.png" 
+    alt="Logo" 
+    loading="eager" // <--- AGGIUNTO
+    className="w-[28px] h-auto object-contain" // <--- AGGIUNTO
+  />
+  <span className="text-lg font-bold text-[#FFD700] font-brand">
+    Lupa Autoricambi
+  </span>
+</div>
         
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} // Toggle

@@ -40,8 +40,8 @@ export default function LoginPage() {
           <img
   src="/LUPALOGO.png"
   alt="Lupa Autoricambi Logo"
-  style={{ width: '150px', height: 'auto' }} // <-- CORRETTO
-  className="drop-shadow-lg"
+  loading="eager" // <--- FORZA IL CARICAMENTO IMMEDIATO
+  className="w-[150px] h-auto object-contain drop-shadow-lg" // <--- CSS Ottimizzato
 />
 
           {/* 2. Scritta con Font Brand */}
