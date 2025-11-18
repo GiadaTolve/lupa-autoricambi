@@ -1,17 +1,14 @@
 // src/app/api/logout/route.ts
 import { NextResponse } from 'next/server';
-// Nota: non importiamo più 'cookies' da 'next/headers'
-// perché non ci serve per cancellare il cookie sulla *risposta*.
 
-// Aggiungiamo 'request: Request' per leggere l'URL
 export async function GET(request: Request) {
-
-  // Creiamo una risposta per il reindirizzamento
-  // Usiamo request.url per ottenere il dominio corrente (es. https://...onrender.com)
-  const response = NextResponse.redirect(new URL('/', request.url));
+  
+  // --- MODIFICA CHIAVE ---
+  // NON dobbiamo reindirizzare. Dobbiamo solo rispondere con JSON.
+  const response = NextResponse.json({ message: 'Logout effettuato con successo' });
+  // --- FINE MODIFICA ---
 
   // Cancelliamo il cookie impostandolo con una data di scadenza passata
-  // Questo si fa sull'oggetto 'response', non importando 'cookies()'
   response.cookies.set('session', '', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -20,5 +17,5 @@ export async function GET(request: Request) {
     path: '/',
   });
 
-  return response;
+  return response; // Invia la risposta 200 OK + JSON
 }
