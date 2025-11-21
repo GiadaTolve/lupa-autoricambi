@@ -109,7 +109,7 @@ export default function AddArticoloForm({ onClose, onArticoloAggiunto }: AddArti
         </div>
         <div>
           <label htmlFor="nome_macchina" className="block text-sm font-medium text-gray-300">
-            Nome Macchina <span className="text-red-500">*</span>
+            Marca <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -143,6 +143,8 @@ export default function AddArticoloForm({ onClose, onArticoloAggiunto }: AddArti
             <option value="C">C</option>
             <option value="D">D</option>
             <option value="E">E</option>
+            <option value="F">F</option> {/* <--- AGGIUNTO */}
+            <option value="MAGAZZINO">Magazzino</option> {/* <--- AGGIUNTO */}
           </select>
         </div>
         <div>

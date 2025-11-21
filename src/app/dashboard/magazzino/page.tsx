@@ -190,7 +190,7 @@ export default function MagazzinoPage() {
             <div>Pres.</div>
             <div>Codice Articolo</div>
             <div>Nome Pezzo</div>
-            <div>Macchina</div>
+            <div>Marca</div>
             <div>Scaffale/Posto</div>
             <div>Quantità</div>
             <div>Azioni</div>
